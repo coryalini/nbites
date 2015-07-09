@@ -437,7 +437,6 @@ STAND_UP_BACK = (
                  
 #v4 version
 STAND_UP_BACK_V4 = (
-
                  (INITIAL_POS[0][0],
                   INITIAL_POS[0][1],
                   INITIAL_POS[0][2],
@@ -552,10 +551,6 @@ REVERSE_STAND_UP_BACK = mirrorMove(STAND_UP_BACK)
 #                     *
 #**********************
 
-# ((LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll),
-# (LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll),
-# (RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll),
-# (RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll),
 
 GOALIE_SQUAT_STAND_UP = ( ((120.5, 19.4, 21.7, -39.7),
                   (-34.9, 46.1, -94.2, 105.4, 34.6, 10.7),
@@ -615,11 +610,11 @@ GOALIE_SQUAT_STAND_UP = ( ((120.5, 19.4, 21.7, -39.7),
                 )
 #Squats with legs in M shape and arms at a 45 degree angle
 GOALIE_SQUAT = (
-                BRING_ARMS_FORWARD,
+                # BRING_ARMS_FORWARD,
 
                  #arms up and little squat
                 ((65.5, 60.6, 6.3, -1.1),
-                 (-29.9, 14.3, -24.7, 48.3, -7.9, 7.7),
+                 (-29.9, 14.3, -24.7, 48.3, -7.9, -7.7),
                  (-29.9, -10.3, -24.3, 47.7, -7.0, 7.7),
                  (64.2, -61.3, -27.4, 2.8),
                  0.4, 1, stiff.NORMAL_STIFFNESSES),
@@ -631,12 +626,18 @@ GOALIE_SQUAT = (
                  (10.5, 4.5, -44.7, 2.5),
                  0.3, 1, stiff.NORMAL_STIFFNESSES),
 
+                # sumo squat
+                ((20.6, -8.9, 36.6, -28.2),
+                 (-65.7, 39.8, -70.7, 68.7, 42.2, -9.9),
+                 (-65.7, -16.0, -59.1, 64.7, 41.8, -4.7),
+                 (20.2, 16.3, -71.1, 16.5),
+                 5, 1, stiff.NORMAL_STIFFNESSES),
                 # sit down
                 ((37.1, -19.7, 77.7, -47.3),
                  (-65.3, 26.7, -88.2, 81.9, 30.1, 58.0),
                  (-65.3, -20.7, -87.6, 71.4, 30.0, -0.2),
                  (36.5, 19.2, -88.2, 46.7),
-                 30, 1, stiff.NORMAL_STIFFNESSES),
+                 20, 1, stiff.NORMAL_STIFFNESSES),
 
                 # Knees up
                 ((43.0, -20.7, 71.2, -39.3),
@@ -732,9 +733,9 @@ GOALIE_SQUAT = (
                  INITIAL_POS[0][1],
                  INITIAL_POS[0][2],
                  INITIAL_POS[0][3],
-                 0.7,0, stiff.STANDUP_STIFFNESSES),
+                 0.7,0, stiff.STANDUP_STIFFNESSES), 
+               )
 
-                )
 #Fast dive to the right
 GOALIE_DIVE_RIGHT = ((INITIAL_POS[0][0],
                        (-5.10,3,-55,115,-60,-3),
