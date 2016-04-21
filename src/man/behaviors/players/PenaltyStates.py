@@ -33,6 +33,7 @@ def afterPenalty(player):
             closeRatio = player.brain.penalizedEdgeClose / float(player.brain.penalizedCount)
             print "Close ratio is: ", closeRatio
             if closeRatio < .5:
+                print "went in!! yay"
                 player.brain.resetLocToCross()
                 return player.goLater(player.gameState)
 
