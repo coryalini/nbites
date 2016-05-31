@@ -32,8 +32,7 @@ namespace vision {
 // used as a weight in a weighted linear regression that is used to update the line's
 // parameters (R,T). Adjustment can be run multiple times with different parameters.
 // Best practice is to run twice, with tighter parameters for the second tme.
-
-extern double START_LINE_FIT_THRESHOLD;
+extern double FIT_THRESH_START;
 
 struct AdjustParams
 {
