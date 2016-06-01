@@ -29,6 +29,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -371,7 +372,11 @@ public class ToolDisplayHandler implements
 		}
 		
 		address = address.trim();
-		
+
+		if (display.localCheckBox.isSelected() && !address.endsWith(".local")) {
+			address += ".local";
+		}
+
 		Debug.warn("trying to connect to %s", address);
 		robot = RobotConnection.connectToRobot(address, this);
 		if (robot == null) {
@@ -426,6 +431,9 @@ public class ToolDisplayHandler implements
 		
 		Events.GGroupAdded.generate(this, lastGroup);
 	}
+
+
+
 	
 	private void setupKeepSlider() {
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
@@ -498,7 +506,7 @@ public class ToolDisplayHandler implements
 				controlConnectAction();
 			}
 		});
-		
+
 		setupKeepSlider();
 		
 		//Stop streaming if the user selects a log...
