@@ -17,7 +17,6 @@ import nbtool.io.CommonIO.IOFirstResponder;
 import nbtool.io.CommonIO.IOInstance;
 import nbtool.nio.LogRPC;
 import nbtool.nio.RobotConnection;
-import nbtool.nio.RobotConnection.RobotFlag;
 import nbtool.util.Debug;
 
 public class FlagPanel extends JPanel implements ActionListener {
@@ -32,10 +31,10 @@ public class FlagPanel extends JPanel implements ActionListener {
 	
 	private final int TOTAL_NAME_LENGTH = 40;
 	
-	public FlagPanel(RobotConnection robot, RobotFlag flag) {
-		String name = flag.name;
-		int index = flag.index;
-		boolean value = flag.value;	
+	public FlagPanel(RobotConnection robot, JsonObject object) {
+		String name = object.get("name").asString().value;
+		int index = object.get("index").asNumber().asInt();
+		boolean value = object.get("value").asBoolean().bool();		
 		
 		this.robot = robot;
 		

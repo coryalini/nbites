@@ -66,7 +66,6 @@ import nbtool.gui.utilitypanes.UtilityParent;
 import nbtool.io.CommonIO.IOFirstResponder;
 import nbtool.io.CommonIO.IOInstance;
 import nbtool.nio.CrossServer.CrossInstance;
-import nbtool.nio.RobotConnection.RobotFlag;
 import nbtool.nio.FileIO;
 import nbtool.nio.LogRPC;
 import nbtool.nio.RobotConnection;
@@ -399,12 +398,18 @@ public class ToolDisplayHandler implements
 					Log flags = out[0];
 					assert(flags.logClass.equals(SharedConstants.LogClass_Flags()));
 					
-					RobotFlag[] parsedFlags = RobotFlag.parseLog(flags);
+					JsonArray fArray = null;
+					try {
+						fArray = flags.blocks.get(0).parseAsJson().asArray();
+					} catch (JsonParseException e) {
+						e.printStackTrace();
+						assert(false);
+					}
 					
 					JPanel container = new JPanel();
-					container.setLayout(new GridLayout(parsedFlags.length, 1));
-					for (RobotFlag val : parsedFlags) {
-						container.add(new FlagPanel(robot, val));
+					container.setLayout(new GridLayout(fArray.size(), 1));
+					for (JsonValue val : fArray) {
+						container.add(new FlagPanel(robot, val.asObject()));
 					}
 					
 					container.setMinimumSize(container.getPreferredSize());
