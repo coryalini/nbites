@@ -1,5 +1,6 @@
 package nbtool.gui.utilitypanes;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -319,6 +320,7 @@ public class ColorCalibrationUtility extends UtilityProvider<ColorParam.Set, Col
 			ColorCalibrationTab tab;
 
 			ImageDisplay imageDisplay;
+			ImageDisplay imageDisplayNorm;
 
 			Log dropped = null;
 			int dropped_width, dropped_height;
@@ -439,6 +441,12 @@ public class ColorCalibrationUtility extends UtilityProvider<ColorParam.Set, Col
 						.asNumber().asInt();
 				dropped_height = dropped.blocks.get(0).dict.get(SharedConstants.LOG_BLOCK_IMAGE_HEIGHT_PIXELS())
 							.asNumber().asInt();
+				
+				Y8Image image = new Y8Image(dropped_width / 2, dropped_height / 2, dropped.blocks.get(0).data);
+				if (imageDisplayNorm != null)
+					imageDisplayNorm.setImage(image.toBufferedImage());
+				else debug.error("{%s} null image display for normal pic!", title());
+				
 				visionCall();
 			}
 
@@ -548,8 +556,19 @@ public class ColorCalibrationUtility extends UtilityProvider<ColorParam.Set, Col
 				}
 
 				imageDisplay = new ImageDisplay();
-				tab.imageTabs.add("result", imageDisplay);
+				tab.imageSplitPane.setLeftComponent(imageDisplay);
 
+				imageDisplayNorm = new ImageDisplay();
+				tab.imageSplitPane.setRightComponent(imageDisplayNorm);
+				
+				tab.imageSplitPane.setResizeWeight(0.5);
+				tab.imageSplitPane.setEnabled(false);
+				tab.imageSplitPane.setBackground(Color.BLACK);
+				tab.imageSplitPane.setForeground(Color.BLACK);
+				
+				tab.imageSplitPane.setDividerLocation(0.5);
+
+				
 				LogDND.makeComponentTarget(tab, top ? topCameraTarget : botCameraTarget);
 
 //				LogDND.makeComponentTarget(tab, new LogDNDTarget(){
