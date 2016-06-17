@@ -442,9 +442,9 @@ public class ColorCalibrationUtility extends UtilityProvider<ColorParam.Set, Col
 				dropped_height = dropped.blocks.get(0).dict.get(SharedConstants.LOG_BLOCK_IMAGE_HEIGHT_PIXELS())
 							.asNumber().asInt();
 				
-				Y8Image image = new Y8Image(dropped_width, dropped_height, dropped.blocks.get(0).data);
+				
 				if (imageDisplayNorm != null)
-					imageDisplayNorm.setImage(image.toBufferedImage());
+					imageDisplayNorm.setImage(dropped.blocks.get(0).parseAsYUVImage().toBufferedImage());
 				else debug.error("{%s} null image display for normal pic!", title());
 				
 				visionCall();
