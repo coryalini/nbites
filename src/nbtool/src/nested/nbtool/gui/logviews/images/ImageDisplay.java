@@ -65,7 +65,7 @@ public class ImageDisplay extends JPanel {
 		if (image != null) {
 			return new Dimension(image.getWidth(), image.getHeight());
 		} else {
-			return new Dimension(120,80);
+			return new Dimension(60,40);
 		}
 	}
 
