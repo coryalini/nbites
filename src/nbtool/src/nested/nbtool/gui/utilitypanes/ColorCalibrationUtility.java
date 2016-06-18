@@ -562,8 +562,7 @@ public class ColorCalibrationUtility extends UtilityProvider<ColorParam.Set, Col
 				tab.imageSplitPane.setRightComponent(imageDisplayNorm);
 				
 				tab.imageSplitPane.setResizeWeight(0.5);
-				tab.imageSplitPane.setEnabled(false);
-				tab.imageSplitPane.setBackground(Color.BLACK);
+//				tab.imageSplitPane.setBackground(Color.BLACK);
 				tab.imageSplitPane.setForeground(Color.BLACK);
 				
 				tab.imageSplitPane.setDividerLocation(0.5);
