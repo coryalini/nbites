@@ -180,7 +180,7 @@ file( GLOB paramFiles
 option( IGNORE_OFFSETS "Include the camera offsets in install." OFF )
 if( !IGNORE_OFFSETS )
   # Only not install if the user wants to
-  install( FILES ${paramFiles} DESTINATION ${CMAKE_INSTALL_PREFIX}/Config )
+  install( FILES ${paramFiles}/cameraOffsets.json DESTINATION ${CMAKE_INSTALL_PREFIX}/Config )
 endif()
 
 file ( GLOB loggingFiles "../share/logshare/LOGGING_CONSTANTS.json" )
