@@ -52,8 +52,8 @@ endif()
 
 
 # Option to include the cameraOffset.json file in install
-option( INCLUDE_OFFSETS "Include the camera offsets in install." OFF )
-if( !INCLUDE_OFFSETS )
+option( IGNORE_OFFSETS "Include the camera offsets in install." OFF )
+if( !IGNORE_OFFSETS )
   # Only not install if the user wants to
   install( config/cameraOffsets/json )
 endif()
