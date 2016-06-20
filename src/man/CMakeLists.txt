@@ -50,15 +50,6 @@ if( BUILD_PROTOBUF )
   include( ${SHARE_DIR}/cmake/BuildProtobuf.cmake )
 endif()
 
-
-# Option to include the cameraOffset.json file in install
-option( IGNORE_OFFSETS "Include the camera offsets in install." OFF )
-if( !IGNORE_OFFSETS )
-  # Only not install if the user wants to
-  install(FILES "config/cameraOffsets.json" DESTINATION "nbites/Config/")
-endif()
-
-
 # testing set up
 if ( OFFLINE )
   include ( ${SHARE_DIR}/cmake/BuildGTest.cmake )
@@ -179,6 +170,18 @@ file( GLOB configFiles
 
 install( FILES ${configFiles}
   DESTINATION ${CMAKE_INSTALL_PREFIX}/Config )
+
+
+file( GLOB paramFiles
+  "param/*"
+)
+
+# Option to include the cameraOffset.json file in install
+option( IGNORE_OFFSETS "Include the camera offsets in install." OFF )
+if( !IGNORE_OFFSETS )
+  # Only not install if the user wants to
+  install( FILES ${paramFiles} DESTINATION ${CMAKE_INSTALL_PREFIX}/Config )
+endif()
 
 file ( GLOB loggingFiles "../share/logshare/LOGGING_CONSTANTS.json" )
 
