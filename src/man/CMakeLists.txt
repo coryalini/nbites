@@ -50,6 +50,15 @@ if( BUILD_PROTOBUF )
   include( ${SHARE_DIR}/cmake/BuildProtobuf.cmake )
 endif()
 
+
+# Option to include the cameraOffset.json file in install
+option( INCLUDE_OFFSETS "Include the camera offsets in install." OFF )
+if( !INCLUDE_OFFSETS )
+  # Only not install if the user wants to
+  install( config/cameraOffsets/json )
+endif()
+
+
 # testing set up
 if ( OFFLINE )
   include ( ${SHARE_DIR}/cmake/BuildGTest.cmake )
