@@ -55,7 +55,7 @@ endif()
 option( IGNORE_OFFSETS "Include the camera offsets in install." OFF )
 if( !IGNORE_OFFSETS )
   # Only not install if the user wants to
-  install( config/cameraOffsets/json )
+  include( config/cameraOffsets/json )
 endif()
 
 
